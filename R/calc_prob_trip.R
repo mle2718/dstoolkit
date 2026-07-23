@@ -1,0 +1,58 @@
+r
+#' Compute Trip-Taking Probability via a Numerically Stable Logistic Function
+#'
+#' Calculates the probability of choosing to take a trip over opting out,
+#' given utility (or utility-like) values for each alternative, using the
+#' standard binary logit formula implemented in a numerically stable way.
+#'
+#' @param v_trip A numeric vector of utility values for the "trip" alternative.
+#' @param v_optout A numeric vector of utility values for the "opt-out"
+#'   alternative, the same length as \code{v_trip} (or recyclable to it).
+#'
+#' @details
+#' This function implements the logistic (sigmoid) choice probability
+#' \deqn{P(\text{trip}) = \frac{1}{1 + e^{-z}}}{P(trip) = 1 / (1 + exp(-z))}
+#' where \code{z = v_trip - v_optout} is the utility difference between the
+#' two alternatives — the standard form used in binary logit / random
+#' utility discrete choice models.
+#'
+#' Computing this directly can overflow or lose precision for large
+#' \code{|z|}, since \code{exp(z)} can be enormous for large positive
+#' \code{z}, and \code{exp(-z)} can be enormous for large negative \code{z}.
+#' To avoid this, the function splits elements into two cases:
+#' \itemize{
+#'   \item When \code{z >= 0}, it computes \code{1 / (1 + exp(-z))} directly,
+#'     since \code{exp(-z)} is bounded (between 0 and 1) and safe.
+#'   \item When \code{z < 0}, it computes the algebraically equivalent
+#'     \code{exp(z) / (1 + exp(z))}, since here \code{exp(z)} is bounded
+#'     instead, avoiding overflow from \code{exp(-z)} on large negative
+#'     \code{z}.
+#' }
+#' Both branches return mathematically identical results to the standard
+#' sigmoid formula; the split exists purely for numerical stability.
+#'
+#' @return A numeric vector, the same length as \code{v_trip}/\code{v_optout},
+#'   with values in \eqn{(0, 1)} representing the probability of taking the
+#'   trip rather than opting out.
+#'
+#' @examples
+#' calc_prob_trip(v_trip = 2, v_optout = 0)
+#' #> [1] 0.8807971
+#'
+#' calc_prob_trip(v_trip = c(-1000, 0, 1000), v_optout = 0)
+#' #> [1] 0 0.5 1
+#'
+#' @seealso \code{\link[stats]{plogis}}, which computes the same quantity
+#'   using base R's built-in (also numerically stable) logistic CDF
+#'   function — e.g. \code{stats::plogis(v_trip - v_optout)} is equivalent
+#'   to this function.
+#' @export
+calc_prob_trip <- function(v_trip, v_optout) {
+  z <- v_trip - v_optout
+  out <- numeric(length(z))
+  pos <- z >= 0
+  out[pos] <- 1 / (1 + exp(-z[pos]))
+  ez <- exp(z[!pos])
+  out[!pos] <- ez / (1 + ez)
+  out
+}
