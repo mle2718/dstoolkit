@@ -23,6 +23,6 @@ Sets up paths for various developers.
 Not much to say here
 }
 \examples{
-developer_setup("mlee","groundfishRDM", 2028)#'
+developer_setup("ML","groundfishRDM", 2028)#'
 #> "C:/Users/min-yang.lee/Documents/dstoolkit/Data/2028_mgt_cycle"
 }
