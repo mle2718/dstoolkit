@@ -4,7 +4,7 @@
 \alias{developer_setup}
 \title{Set up and Create, if necessary, Paths and Directories for your project}
 \usage{
-developer_setup(dev_name, fishery, mangement_year)
+developer_setup(dev_name, fishery, management_year)
 }
 \arguments{
 \item{dev_name}{Developer Initials.}

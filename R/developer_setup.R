@@ -13,12 +13,12 @@
 #' developer_setup("mlee","groundfishRDM", 2028)#'
 #' #> "C:/Users/min-yang.lee/Documents/dstoolkit/Data/2028_mgt_cycle"
 #' @export
-developer_setup<- function(dev_name, fishery, mangement_year) {
+developer_setup<- function(dev_name, fishery, management_year) {
 
    stopifnot(dev_name %in% c("TP", "LCH", "ML", "KB"))
    stopifnot(fishery %in% c("flukeRDM", "groundfishRDM"))
-
-   subf<-paste0(mangement_year,"_mgt_cycle")
+   management_year<-as.character(management_year)
+   subf<-paste0(management_year,"_mgt_cycle")
 
    if (dev_name=="LCH"){
       out<-file.path("E:","Lou_projects",fishery,subf)
