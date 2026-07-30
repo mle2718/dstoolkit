@@ -2,10 +2,10 @@
 #'
 #' Sets up paths for various developers.
 #'
-#' @dev_name Developer Initials.
-#' @fishery Either flukeRDM or groundfishRDM.
-#' @management_year the fishing year in which fishery management actions will take place
-#' @details
+#' @param dev_name Developer Initials.
+#' @param fishery Either flukeRDM or groundfishRDM.
+#' @param management_year the fishing year in which fishery management actions will take place
+#' @details Not much to say here
 #'
 #' @return A file path to the data storage directory.
 #'
@@ -24,7 +24,7 @@ developer_setup<- function(dev_name, fishery, mangement_year) {
       out<-file.path("E:","Lou_projects",fishery,subf)
 
    } else if (dev_name %in% c("TP","ML", "KB")){
-      out<-here("Data",subf)
+      out<-here::here("Data",subf)
    }
 	 dir.create(out, showWarnings = TRUE, recursive=TRUE)
 	 out
