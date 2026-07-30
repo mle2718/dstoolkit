@@ -1,4 +1,3 @@
-r
 #' Compute Trip-Taking Probability via a Numerically Stable Logistic Function
 #'
 #' Calculates the probability of choosing to take a trip over opting out,

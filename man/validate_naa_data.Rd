@@ -27,5 +27,4 @@ itis code (species_itis) and value.
 df is expectd to contain a data_version, which is a Date
 df is expected to contain state and wave. These may be NA
 ndraws and years are used with age_classes to ensure the proper number of rows
-@export
 }

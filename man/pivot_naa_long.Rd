@@ -33,5 +33,4 @@ sample_df <- tibble(
  2  2001 NAA 3    250
  3  2002 NAA 2    150
  4  2002 NAA 3    100#'
-  @export
 }
