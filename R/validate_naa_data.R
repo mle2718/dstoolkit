@@ -7,7 +7,6 @@
 #' @param age_classes number of age classes.
 #' @param ndraws=1 number of random draws in the dataframe
 #' @param years=1 number of years in the dataframe
-
 #' @details
 #'  df is expcted to contain character variables for
 #'     fishery, common name, metric, source,  units.
@@ -16,16 +15,7 @@
 #'  df is expectd to contain a data_version, which is a Date
 #'  df is expected to contain state and wave. These may be NA
 #'  ndraws and years are used with age_classes to ensure the proper number of rows
-#'  #' @return nothing
-#'
-#'   @export
-
-
-########################################################
-# Define the validation function
-# Is our data what it claims to be.  We should have some characters, some
-# numerics, a date. These should have no missing values.
-########################################################
+#'  @export
 validate_naa_data <- function(df, age_classes, ndraws=1, years=1) {
 
   # Ensure specified columns are character vectors and contain no NAs

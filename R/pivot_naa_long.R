@@ -25,7 +25,6 @@
 #'  3  2002 NAA 2    150
 #'  4  2002 NAA 3    100#'
 #'   @export
-
 pivot_naa_long <- function(df) {
   age_cols <- grep("^age\\d+$", names(df), value = TRUE)
   df %>%
