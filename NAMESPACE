@@ -2,3 +2,5 @@
 
 export(parse_date_any)
 export(safe_divide)
+export(sample_positive_mean)
+importFrom(stats,rlnorm)
