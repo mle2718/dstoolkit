@@ -3,4 +3,6 @@
 export(calc_prob_trip)
 export(developer_setup)
 export(parse_date_any)
+export(pivot_naa_long)
 export(safe_divide)
+export(validate_naa_data)
